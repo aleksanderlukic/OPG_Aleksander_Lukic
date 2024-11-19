@@ -73,7 +73,7 @@ namespace FitTrack
     {
         public UserManagement manager;
 
-        public User currentUser ;
+        public User currentUser;
         public AddWorkoutsWindow(User user, UserManagement manager)
         {
             InitializeComponent();
@@ -105,14 +105,15 @@ namespace FitTrack
 
             try
             {
+
                 // Skapa ett nytt Workout-objekt
                 NewWorkout = new CardioWorkout
                 {
                     Type = WorkoutTypeComboBox.Text,
-                    //Duration = TimeSpan.FromMinutes(duration),
+                    Duration = TimeSpan.FromMinutes(duration),
                     CaloriesBurned = caloriesBurned,
                     Notes = NotesTextBox.Text,
-                  /*  Date = DateTime.Now */// Använd nuvarande datum för träningspasset
+                    Date = DateOnly.Parse(DateTextBox.Text)
                 };
 
                 MessageBox.Show("En ny workout har skapats");
