@@ -20,7 +20,7 @@ namespace FitTrack.Classes.BaseClasses
         public UserManagement()
         {
             User user = new User { Username = "Alex", Password = "123", Country = "Sverige" };
-            user.Workouts.Add(new CardioWorkout { Duration = 20, Type = "CardioWorkout" , Date = new DateOnly()   , CaloriesBurned = 123 , Notes = "blabla"  });
+            user.Workouts.Add(new CardioWorkout { Duration = new TimeSpan(20), Type = "CardioWorkout" , Date = new DateOnly()   , CaloriesBurned = 123 , Notes = "blabla"  });
             Users = new List<User>();
             Users.Add(user);
             

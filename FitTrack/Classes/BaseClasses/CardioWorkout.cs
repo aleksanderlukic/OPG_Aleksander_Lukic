@@ -8,6 +8,6 @@ namespace FitTrack.Classes.BaseClasses
 {
     public class CardioWorkout : Workout
     {
-        public int Distance  { get; set; } //Distans i kilometer eller meter
+        public int Distance  { get; set; } //distans i km
     }
 }

@@ -134,5 +134,39 @@ namespace FitTrack
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        private void UserDetails_Click(object sender, RoutedEventArgs e)
+        {
+            var userDetailsWindow = new UserDetailsWindow(manager);
+            userDetailsWindow.Show();
+        }
+
+        private void RemoveWorkout_Click(object sender, RoutedEventArgs e)
+        {
+            if (WorkoutListBox.SelectedItem != null)
+            {
+                var selectedWorkout = WorkoutListBox.SelectedItem as Workout; //hitta valt träningspass
+                if (selectedWorkout != null)
+                {
+                    WorkoutList.Remove(selectedWorkout); //ta bor det.
+
+                }
+                else
+                {
+                    MessageBox.Show("No workout selected.");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select a workout to remove.");
+            }
+        }
+
+
+
+        private void WorkoutDetails_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

@@ -1,0 +1,15 @@
+﻿<Window x:Class="FitTrack.UserDetailsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FitTrack"
+        mc:Ignorable="d"
+        Title="UserDetailsWindow" Height="450" Width="800">
+    <Grid>
+        <Label Content="Label" HorizontalAlignment="Left" Margin="258,75,0,0" VerticalAlignment="Top" RenderTransformOrigin="2.175,1.138"/>
+        <TextBox HorizontalAlignment="Left" Margin="355,79,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <Button Content="Close" HorizontalAlignment="Center" Margin="0,352,0,0" VerticalAlignment="Top" Click="CloseButton_Click" Height="29" Width="100"/>
+
+    </Grid>
+</Window>

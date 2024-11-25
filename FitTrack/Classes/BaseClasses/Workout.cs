@@ -86,18 +86,18 @@ public abstract class Workout
 {
     public string Name
     {
-        get { return Date.ToString() + " " + Type; }   // get method
+        get { return Type + " - " + Date.ToString(); }   // get method
         set { Name = value; }  // set method
     }
     public DateOnly Date { get; set; }
     public string Type { get; set; }
-    public int Duration { get; set; }
+    public TimeSpan Duration { get; set; }
     public int CaloriesBurned { get; set; }
     public string Notes { get; set; }
 
-    public virtual int CalculateCaloriesBurned()
+    public virtual double CalculateCaloriesBurned()
     {
         // Formel på hur mycket kalorier som bränts
-        return (Duration * 5); // Exempel formula
+        return (Duration.TotalMinutes * 5); // Exempel formula
     }
 }

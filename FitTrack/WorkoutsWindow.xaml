@@ -9,9 +9,9 @@
     <Grid Background="LightGray">
         <StackPanel>
             <Button Content="Lägg till Träningspass" Width="150" Height="30" Margin="100,10,100,0" HorizontalAlignment="Center" VerticalAlignment="Top" Click="AddWorkout_Click"/>
-        <Button Content="Ta bort Träningspass" Width="150" Height="30" Margin="100,10,100,0" HorizontalAlignment="Center" VerticalAlignment="Top" Click="AddWorkout_Click"/>
-            <Button Content="Info" Width="150" Height="30" Margin="100,10,100,0" HorizontalAlignment="Center" VerticalAlignment="Top" Click="AddWorkout_Click"/>
-            <Button Content="User Details" Width="150" Height="30" Margin="100,10,100,0" HorizontalAlignment="Center" VerticalAlignment="Top" Click="AddWorkout_Click"/>
+        <Button Content="Ta bort Träningspass" Width="150" Height="30" Margin="100,10,100,0" HorizontalAlignment="Center" VerticalAlignment="Top" Click="RemoveWorkout_Click"/>
+            <Button Content="Info" Width="150" Height="30" Margin="100,10,100,0" HorizontalAlignment="Center" VerticalAlignment="Top" Click="WorkoutDetails_Click"/>
+            <Button Content="User Details" Width="150" Height="30" Margin="100,10,100,0" HorizontalAlignment="Center" VerticalAlignment="Top" Click="UserDetails_Click"/>
             <ListBox Name="WorkoutListBox" Height="150" Margin="10,50,10,10" DisplayMemberPath="Name" ItemsSource="{Binding WorkoutList}"/>
         </StackPanel>
     </Grid>
