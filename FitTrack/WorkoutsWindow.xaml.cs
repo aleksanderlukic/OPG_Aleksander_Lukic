@@ -168,5 +168,28 @@ namespace FitTrack
         {
 
         }
+    
+
+        private void InfoButton_Click(object sender, RoutedEventArgs e)
+
+        {
+
+        // Skapa och visa en popup med information
+        string infoText = "Välkommen till FitTrack!\n\n" +
+                          "Så här använder du appen:\n" +
+                          "1. Logga in med ditt konto.\n" +
+                          "2. Följ dina framsteg genom att registrera träningspass.\n" +
+                          "3. Analysera din data i statistiksektionen.\n\n" +
+                          "Om FitTrack:\n" +
+                          "FitTrack är ett företag som brinner för att hjälpa människor att nå sina träningsmål " +
+                          "genom intuitiva och kraftfulla digitala verktyg.";
+
+        MessageBox.Show(infoText, "Om FitTrack", MessageBoxButton.OK, MessageBoxImage.Information);
+
+        }
+          
     }
 }
+
+
+    
