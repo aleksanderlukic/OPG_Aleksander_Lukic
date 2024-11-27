@@ -7,11 +7,10 @@
         mc:Ignorable="d"
         Title="WorkoutDetailsWindow" Height="450" Width="800">
     <Grid>
-        <TextBox x:Name="WorkoutTypeTextBox" Width="200" Height="30" Margin="0,20,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" Text="True"/>
-        <TextBox x:Name="DurationTextBox" Width="200" Height="30" Margin="0,60,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" Text="Varaktighet"/>
-        <TextBox x:Name="CaloriesBurnedTextBox" Width="200" Height="30" Margin="0,100,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" Text="Kalorier"/>
-        <TextBox x:Name="NotesTextBox" Width="200" Height="60" Margin="0,140,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" Text="Anteckningar"/>
-        <Button Content="Spara" Width="100" Height="30" Margin="0,220,100,0" HorizontalAlignment="Right" VerticalAlignment="Top" Click="SaveButton_Click"/>
-        <Button Content="Avbryt" Width="100" Height="30" Margin="100,220,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Click="CancelButton_Click"/>
+        <TextBlock Text="Workout Details" FontWeight="Bold" FontSize="16" Margin="0,0,0,10" />
+        <TextBlock Text="Name:" FontWeight="Bold" />
+        <TextBlock Text="{Binding Name}" Margin="0,0,0,10" />
+        <TextBlock Text="Date:" FontWeight="Bold" />
+        <TextBlock Text="{Binding Date}" />
     </Grid>
 </Window>

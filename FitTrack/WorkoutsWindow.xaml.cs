@@ -187,9 +187,57 @@ namespace FitTrack
         MessageBox.Show(infoText, "Om FitTrack", MessageBoxButton.OK, MessageBoxImage.Information);
 
         }
-          
+            public WorkoutsWindow()
+            {
+                InitializeComponent();
+
+            // Exempeldata för träningspass
+            var workouts = new List<Workout>
+            {
+                new CardioWorkout  { Name = "Morning Run", Date = new DateOnly(2024, 11, 26) },
+                new StrengthWorkout { Name = "Evening Yoga", Date = new DateOnly(2024, 11, 26) },
+                new StrengthWorkout { Name = "Strength Training", Date = new DateOnly(2024, 11, 26) }
+            };
+
+                // Binda träningspassen till listan
+                WorkoutListBox.ItemsSource = workouts;
+            }
+
+            private void DetailsButton_Click(object sender, RoutedEventArgs e)
+            {
+                // Hämta det markerade träningspasset
+                var selectedWorkout = WorkoutListBox.SelectedItem as Workout;
+
+                if (selectedWorkout == null)
+                {
+                    MessageBox.Show("Please select a workout to view details.", "No Selection", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+
+                // Öppna detaljfönstret för det valda träningspasset
+                var detailsWindow = new WorkoutDetailsWindow(selectedWorkout);
+                detailsWindow.ShowDialog();
+            }
+
+        private void SignOutButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Skapa en ny instans av MainWindow
+            MainWindow mainWindow = new MainWindow();
+
+            // Visa MainWindow
+            mainWindow.Show();
+
+            // Stäng nuvarande fönster (WorkoutsWindow)
+            this.Close();
+        }
     }
-}
+    }
+    
+
+
+
+
+
 
 
     
