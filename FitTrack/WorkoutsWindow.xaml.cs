@@ -222,7 +222,7 @@ namespace FitTrack
         private void SignOutButton_Click(object sender, RoutedEventArgs e)
         {
             // Skapa en ny instans av MainWindow
-            MainWindow mainWindow = new MainWindow();
+            MainWindow mainWindow = new MainWindow(this.manager);
 
             // Visa MainWindow
             mainWindow.Show();
@@ -231,7 +231,7 @@ namespace FitTrack
             this.Close();
         }
     }
-    }
+}
     
 
 
