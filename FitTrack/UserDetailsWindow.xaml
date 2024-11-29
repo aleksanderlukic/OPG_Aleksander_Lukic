@@ -6,10 +6,58 @@
         xmlns:local="clr-namespace:FitTrack"
         mc:Ignorable="d"
         Title="UserDetailsWindow" Height="450" Width="800">
-    <Grid>
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Nuvarande användarnamn och land -->
+        <StackPanel Grid.Row="0" Margin="0,0,0,20">
+            <TextBlock Text="Current Username:" FontWeight="Bold"/>
+            <TextBlock Text="{Binding CurrentUsername}" Margin="10,0,0,10"/>
+            <TextBlock Text="Current Country:" FontWeight="Bold"/>
+            <TextBlock Text="{Binding CurrentCountry}" Margin="10,0,0,10"/>
+        </StackPanel>
+
+        <!-- Inputfält för nytt användarnamn -->
+        <StackPanel Grid.Row="1" Margin="0,0,0,20">
+            <TextBlock Text="New Username:" FontWeight="Bold"/>
+            <TextBox Name="NewUsernameTextBox" Width="200"/>
+        </StackPanel>
+
+        <!-- Inputfält för nytt lösenord -->
+        <StackPanel Grid.Row="2" Margin="0,0,0,20">
+            <TextBlock Text="New Password:" FontWeight="Bold"/>
+            <PasswordBox Name="NewPasswordBox" Width="200"/>
+            <TextBlock Text="Confirm Password:" FontWeight="Bold" Margin="0,10,0,0"/>
+            <PasswordBox Name="ConfirmPasswordBox" Width="200"/>
+        </StackPanel>
+
+        <!-- ComboBox för landval -->
+        <StackPanel Grid.Row="3" Margin="0,0,0,20">
+            <TextBlock Text="Select Country:" FontWeight="Bold"/>
+            <ComboBox Name="CountryComboBox" Width="200">
+                <ComboBoxItem Content="Sweden"/>
+                <ComboBoxItem Content="Norway"/>
+                <ComboBoxItem Content="Denmark"/>
+                <ComboBoxItem Content="Finland"/>
+            </ComboBox>
+        </StackPanel>
+
+        <!-- Save och Cancel knappar -->
+        <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">
+            <Button Content="Save" Width="100" Margin="0,0,10,0" Click="SaveButton_Click"/>
+            <Button Content="Cancel" Width="100" Click="CancelButton_Click"/>
+        </StackPanel>
+        
         <Label Content="Label" HorizontalAlignment="Left" Margin="258,75,0,0" VerticalAlignment="Top" RenderTransformOrigin="2.175,1.138"/>
         <TextBox HorizontalAlignment="Left" Margin="355,79,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
         <Button Content="Close" HorizontalAlignment="Center" Margin="0,352,0,0" VerticalAlignment="Top" Click="CloseButton_Click" Height="29" Width="100"/>
+        
+        
 
     </Grid>
 </Window>
