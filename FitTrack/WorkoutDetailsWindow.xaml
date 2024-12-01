@@ -7,10 +7,12 @@
         mc:Ignorable="d"
         Title="WorkoutDetailsWindow" Height="450" Width="800">
     <Grid>
-        <TextBlock Text="Workout Details" FontWeight="Bold" FontSize="16" Margin="0,0,0,10" />
-        <TextBlock Text="Name:" FontWeight="Bold" />
-        <TextBlock Text="{Binding Name}" Margin="0,0,0,10" />
-        <TextBlock Text="Date:" FontWeight="Bold" />
-        <TextBlock Text="{Binding Date}" />
+        <StackPanel Margin="0,0,0,0">
+            <TextBlock Text="Workout Details" FontWeight="Bold" FontSize="16" Margin="0,0,0,10" />
+            <TextBlock Text="Name:" FontWeight="Bold" />
+            <TextBlock Text="{Binding Name}" Margin="0,0,0,10" />
+            <TextBlock Text="Date:" FontWeight="Bold" />
+            <TextBlock Text="{Binding Date}" />
+        </StackPanel>
     </Grid>
 </Window>
