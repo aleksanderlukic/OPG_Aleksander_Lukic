@@ -82,6 +82,29 @@ namespace FitTrack.Classes.BaseClasses;
 //    }
 //}
 
+//public abstract class Workout
+//{
+//    public string Name { get; set; }
+
+
+//    public DateOnly Date
+
+//    {
+//        get { return Type + " - " + Date.ToString(); }   // get method
+//        set { Name = value; }  // set method
+//    }
+//    public string Type { get; set; }
+//    public TimeSpan Duration { get; set; }
+//    public int CaloriesBurned { get; set; }
+//    public string Notes { get; set; }
+
+//    public virtual double CalculateCaloriesBurned()
+//    {
+//        // Formel på hur mycket kalorier som bränts
+//        return (Duration.TotalMinutes * 5); // Exempel formula
+//    }
+//}
+
 public abstract class Workout
 {
     public string Name
@@ -92,6 +115,12 @@ public abstract class Workout
     public DateOnly Date { get; set; }
     public string Type { get; set; }
     public TimeSpan Duration { get; set; }
+
+    public double DurationMin
+    {
+        get { return Duration.TotalMinutes; }   // get method
+        set { DurationMin = value; }  // set method
+    }
     public int CaloriesBurned { get; set; }
     public string Notes { get; set; }
 
