@@ -113,7 +113,7 @@ namespace FitTrack
                     Duration = TimeSpan.FromMinutes(duration),
                     CaloriesBurned = caloriesBurned,
                     Notes = NotesTextBox.Text,
-                    Date = DateOnly.Parse(DateTextBox.Text)
+                    Date = DateOnly.Parse(DatePicker.Text)
                 };
 
                 MessageBox.Show("En ny workout har skapats");

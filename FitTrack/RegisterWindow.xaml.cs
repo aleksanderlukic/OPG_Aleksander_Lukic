@@ -1,6 +1,8 @@
 ﻿using FitTrack.Classes.BaseClasses;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.Metrics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -48,7 +50,7 @@ namespace FitTrack
 
             {
 
-                MessageBox.Show("Lösenroden matchar inte!");
+                MessageBox.Show("Lösenorden matchar inte!");
 
             }
 
@@ -65,3 +67,4 @@ namespace FitTrack
         }
     }
 }
+

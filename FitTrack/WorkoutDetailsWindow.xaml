@@ -12,7 +12,7 @@
             <TextBlock Text="Träningstyp" FontWeight="Bold" />
             <TextBlock Text="{Binding Type}" Margin="0,0,0,10" />
             <TextBlock Text="Date:" FontWeight="Bold" />
-            <TextBlock Text="{Binding Date}" Margin="0,0,0,10"  />
+            <TextBlock Text="{Binding DateString}" Margin="0,0,0,10"  />
             <TextBlock Text="Kalorier" FontWeight="Bold"/>
             <TextBlock Text="{Binding CaloriesBurned}" Margin="0,0,0,10"  />
             <TextBlock Text="Varaktighet (Minuter)" FontWeight="Bold"/>

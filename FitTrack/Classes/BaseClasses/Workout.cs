@@ -109,7 +109,7 @@ public abstract class Workout
 {
     public string Name
     {
-        get { return Type + " - " + Date.ToString(); }   // get method
+        get { return Type + " - " + Date.ToString("yyyy-MM-dd"); }   // get method
         set { Name = value; }  // set method
     }
     public DateOnly Date { get; set; }
@@ -120,6 +120,13 @@ public abstract class Workout
     {
         get { return Duration.TotalMinutes; }   // get method
         set { DurationMin = value; }  // set method
+    }
+
+    public string DateString 
+    
+    {
+        get { return Date.ToString("yyyy-MM-dd"); }   // get method
+        set { DateString = value; }  // set method
     }
     public int CaloriesBurned { get; set; }
     public string Notes { get; set; }

@@ -12,11 +12,11 @@
                <ComboBoxItem Content="Konditionsträning"/>
                <ComboBoxItem Content="Styrketräning"/>
         </ComboBox>
-            <TextBox Name="DateTextBox" Width="400" Height="30" Margin="0,10,0,0" Text="" />
+            <DatePicker x:Name="DatePicker"/>
             <TextBox x:Name="DurationTextBox" Width="400" Height="30" Margin="0,10,0,0"  HorizontalAlignment="Center" VerticalAlignment="Top" Text=""/>
                 <TextBox x:Name="CaloriesBurnedTextBox" Width="400" Height="30" Margin="0,10,0,0"  HorizontalAlignment="Center" VerticalAlignment="Top" Text=""/>
             <TextBox x:Name="NotesTextBox" Width="400" Height="60" Margin="0,10,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" Text=""/>
-          
+
 
         </StackPanel>
         <Button Content="Spara" Width="100" Height="30" Margin="0,300,100,0" HorizontalAlignment="Right" VerticalAlignment="Top" Click="SaveWorkout_Click"/>
