@@ -10,15 +10,21 @@
         <StackPanel Margin="10,0,0,0">
             <TextBlock Text="Workout Details" FontWeight="Bold" FontSize="16" Margin="0,0,0,10" />
             <TextBlock Text="Träningstyp" FontWeight="Bold" />
-            <TextBlock Text="{Binding Type}" Margin="0,0,0,10" />
+            <ComboBox x:Name="WorkoutTypeComboBox" Width="300"  Margin="0,0,0,10" HorizontalAlignment="Left" IsEnabled="False"  SelectedValuePath="Content" SelectedValue="{Binding Type}" SelectionChanged="WorkoutTypeComboBox_SelectionChanged" >
+                <ComboBoxItem Content="Konditionsträning"/>
+                <ComboBoxItem Content="Styrketräning"/>
+            </ComboBox>
             <TextBlock Text="Date:" FontWeight="Bold" />
-            <TextBlock Text="{Binding DateString}" Margin="0,0,0,10"  />
+            <DatePicker x:Name="DateInput" SelectedDate="{Binding Date, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="300" Margin="0,0,0,10" HorizontalAlignment="Left" IsEnabled="False" />
             <TextBlock Text="Kalorier" FontWeight="Bold"/>
-            <TextBlock Text="{Binding CaloriesBurned}" Margin="0,0,0,10"  />
+            <TextBox x:Name="CaloriesBurnedInput" TextWrapping="Wrap" Text="{Binding CaloriesBurned}" Width="300" Margin="0,0,0,10" HorizontalAlignment="Left" IsEnabled="False"  />
             <TextBlock Text="Varaktighet (Minuter)" FontWeight="Bold"/>
-            <TextBlock Text="{Binding DurationMin}" Margin="0,0,0,10"  />
+            <TextBox x:Name="DurationMinInput" TextWrapping="Wrap" Text="{Binding Duration}" Width="300" Margin="0,0,0,10" HorizontalAlignment="Left" IsEnabled="False"  />
             <TextBlock Text="Anteckningar" FontWeight="Bold"/>
-            <TextBlock Text="{Binding Notes}" Margin="0,0,0,10"  />
+            <TextBox x:Name="NotesInput" TextWrapping="Wrap" Text="{Binding Notes}" Width="300" Margin="0,0,0,10" HorizontalAlignment="Left" IsEnabled="False" />
+            <Button x:Name="UnlockBtn" Content="Lås upp" Margin="0,0,0,10" Click="UnlockBtn_Click"/>
+            <Button x:Name="SaveBtn" Content="Spara" Click="SaveBtn_Click" Visibility="Hidden"/>
+
 
         </StackPanel>
     </Grid>

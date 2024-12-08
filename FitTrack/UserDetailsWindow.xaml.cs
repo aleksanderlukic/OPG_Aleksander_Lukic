@@ -20,12 +20,7 @@ namespace FitTrack
     /// </summary>
     public partial class UserDetailsWindow : Window
     {
-        private UserManagement manager;
-        public UserDetailsWindow(UserManagement manager)
-        {
-            InitializeComponent();
-            this.manager = manager;
-        }
+        
 
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
@@ -39,11 +34,24 @@ namespace FitTrack
         public string CurrentUsername { get; set; } = "CurrentUser"; // För demoändamål
         public string CurrentCountry { get; set; } = "Sweden"; // För demoändamål
 
-        public UserDetailsWindow()
+        private UserManagement manager;
+        private int foundUserIndex;
+        private WorkoutsWindow _workoutsWindow;
+        public UserDetailsWindow(WorkoutsWindow workoutsWindow, ref UserManagement manager)
         {
             InitializeComponent();
-            DataContext = this;
+            _workoutsWindow = workoutsWindow;
+            _workoutsWindow.Hide();
+            this.manager = manager;
+            DataContext = manager.CurrentUser;
+
+            var currentUsername = manager.CurrentUser.Username;
+            foundUserIndex = manager.Users.FindIndex(us =>
+            {
+                return us.Username == currentUsername;
+            });
         }
+   
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
@@ -87,6 +95,12 @@ namespace FitTrack
 
             // Spara ny användardata (lägg till din egen logik här)
             MessageBox.Show("User details saved successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+
+            manager.Users.RemoveAt(foundUserIndex);
+            manager.CurrentUser.Password = confirmPassword;
+            manager.Users.Add(manager.CurrentUser);
+            _workoutsWindow.LoggedInAsValue.Text = manager.CurrentUser.Username;
+            _workoutsWindow.Show();
 
             // Stäng fönstret och återgå till föregående fönster
             this.Close();

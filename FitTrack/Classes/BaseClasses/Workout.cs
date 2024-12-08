@@ -112,28 +112,16 @@ public abstract class Workout
         get { return Type + " - " + Date.ToString("yyyy-MM-dd"); }   // get method
         set { Name = value; }  // set method
     }
-    public DateOnly Date { get; set; }
+    public DateTime Date { get; set; }
     public string Type { get; set; }
-    public TimeSpan Duration { get; set; }
+    public double Duration { get; set; }
 
-    public double DurationMin
-    {
-        get { return Duration.TotalMinutes; }   // get method
-        set { DurationMin = value; }  // set method
-    }
-
-    public string DateString 
-    
-    {
-        get { return Date.ToString("yyyy-MM-dd"); }   // get method
-        set { DateString = value; }  // set method
-    }
     public int CaloriesBurned { get; set; }
     public string Notes { get; set; }
 
     public virtual double CalculateCaloriesBurned()
     {
         // Formel på hur mycket kalorier som bränts
-        return (Duration.TotalMinutes * 5); // Exempel formula
+        return (Duration * 5); // Exempel formula
     }
 }

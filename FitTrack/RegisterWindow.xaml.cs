@@ -38,7 +38,7 @@ namespace FitTrack
             if (password == ConfirmPassword)
 
             {
-
+                this.manager.Users.Add(new User() { Country = country, Username = username, Password = password });
                 MessageBox.Show("Användare registrerad!");
                 MainWindow mainWindow = new MainWindow(manager);
                 mainWindow.Show();
