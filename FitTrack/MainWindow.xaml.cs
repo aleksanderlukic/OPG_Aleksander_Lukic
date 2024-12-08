@@ -58,6 +58,17 @@ namespace FitTrack
             if (user != null)
             {
                 MessageBox.Show("Inloggning lyckades!", "Inloggning", MessageBoxButton.OK, MessageBoxImage.Information);
+                manager.CurrentUser = user;
+
+                if (user.IsAdmin == true)
+                {
+                    manager.LoggedInAsAdmin = true;
+                }
+                else
+                {
+                    manager.LoggedInAsAdmin = false;
+                }
+
                 WorkoutsWindow workoutsWindow = new WorkoutsWindow(manager);
                 workoutsWindow.Show();
                 this.Close();

@@ -86,6 +86,7 @@ namespace FitTrack
         private UserManagement manager;
         public User CurrentUser { get; private set; }
         private ObservableCollection<Workout> workoutList;
+        private bool IsUserComboChangedFromCode {  get; set; }
 
         public ObservableCollection<Workout> WorkoutList
         {
@@ -97,12 +98,45 @@ namespace FitTrack
             }
         }
 
+        private ObservableCollection<User> userList;
+
+        public ObservableCollection<User> UserList
+        {
+            get { return userList; }
+            set
+            {
+                userList = value;
+                OnPropertyChanged(nameof(UserList));
+            }
+        }
+
+        private User _selectedUser;
+        public User SelectedUser { 
+            get => _selectedUser; 
+            set { _selectedUser = value; OnPropertyChanged(nameof(SelectedUser)); } 
+        }
+
         public WorkoutsWindow(UserManagement manager)
         {
             InitializeComponent();
             this.manager = manager;
             workoutList = new ObservableCollection<Workout>(); // Initialize the ObservableCollection
             DataContext = this; // Set the DataContext for data binding
+            LoggedInAsValue.Text = manager.CurrentUser.Username;
+            WorkoutList = new ObservableCollection<Workout>(manager.CurrentUser.Workouts);
+            UserList = new ObservableCollection<User>(manager.Users);
+
+            if (manager.LoggedInAsAdmin)
+            {
+                UsersCombo.Visibility = Visibility.Visible;
+                IsUserComboChangedFromCode = true;
+                SelectedUser = UserList.First(us => us.Username == manager.CurrentUser.Username);
+                
+
+            } else
+            {
+                UsersCombo.Visibility = Visibility.Collapsed;
+            }
         }
 
         private void AddWorkout_Click(object sender, RoutedEventArgs e)
@@ -114,6 +148,7 @@ namespace FitTrack
                 if (addWorkoutWindow.NewWorkout != null)
                 {
                     WorkoutList.Add(addWorkoutWindow.NewWorkout); // Add new workout to the ObservableCollection
+                    manager.UpdateWorkoutsList(WorkoutList.ToList());
                 }
                 else
                 {
@@ -137,7 +172,7 @@ namespace FitTrack
 
         private void UserDetails_Click(object sender, RoutedEventArgs e)
         {
-            var userDetailsWindow = new UserDetailsWindow(manager);
+            var userDetailsWindow = new UserDetailsWindow(this, ref manager);
             userDetailsWindow.Show();
         }
 
@@ -149,7 +184,7 @@ namespace FitTrack
                 if (selectedWorkout != null)
                 {
                     WorkoutList.Remove(selectedWorkout); //ta bor det.
-
+                    manager.UpdateWorkoutsList(WorkoutList.ToList());
                 }
                 else
                 {
@@ -163,61 +198,55 @@ namespace FitTrack
         }
 
 
-
-        private void WorkoutDetails_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-    
-
         private void InfoButton_Click(object sender, RoutedEventArgs e)
 
         {
 
-        // Skapa och visa en popup med information
-        string infoText = "Välkommen till FitTrack!\n\n" +
-                          "Så här använder du appen:\n" +
-                          "1. Logga in med ditt konto.\n" +
-                          "2. Följ dina framsteg genom att registrera träningspass.\n" +
-                          "3. Analysera din data i statistiksektionen.\n\n" +
-                          "Om FitTrack:\n" +
-                          "FitTrack är ett företag som brinner för att hjälpa människor att nå sina träningsmål " +
-                          "genom intuitiva och kraftfulla digitala verktyg.";
+            // Skapa och visa en popup med information
+            string infoText = "Välkommen till FitTrack!\n\n" +
+                              "Så här använder du appen:\n" +
+                              "1. Logga in med ditt konto.\n" +
+                              "2. Följ dina framsteg genom att registrera träningspass.\n" +
+                              "3. Analysera din data i statistiksektionen.\n\n" +
+                              "Om FitTrack:\n" +
+                              "FitTrack är ett företag som brinner för att hjälpa människor att nå sina träningsmål " +
+                              "genom intuitiva och kraftfulla digitala verktyg.";
 
-        MessageBox.Show(infoText, "Om FitTrack", MessageBoxButton.OK, MessageBoxImage.Information);
+            MessageBox.Show(infoText, "Om FitTrack", MessageBoxButton.OK, MessageBoxImage.Information);
 
         }
-            public WorkoutsWindow()
-            {
-                InitializeComponent();
+        public WorkoutsWindow()
+        {
+            InitializeComponent();
 
             // Exempeldata för träningspass
             var workouts = new List<Workout>
             {
-                new CardioWorkout  { Name = "Morning Run", Date = new DateOnly(2024, 11, 26) },
-                new StrengthWorkout { Name = "Evening Yoga", Date = new DateOnly(2024, 11, 26) },
-                new StrengthWorkout { Name = "Strength Training", Date = new DateOnly(2024, 11, 26) }
+                new CardioWorkout  { Name = "Morning Run", Date = new DateTime(2024, 11, 26) },
+                new StrengthWorkout { Name = "Evening Yoga", Date = new DateTime(2024, 11, 26) },
+                new StrengthWorkout { Name = "Strength Training", Date = new DateTime(2024, 11, 26) }
             };
 
-                // Binda träningspassen till listan
-                WorkoutListBox.ItemsSource = workouts;
-            }
+            // Binda träningspassen till listan
+            WorkoutListBox.ItemsSource = workouts;
+        }
 
-            private void DetailsButton_Click(object sender, RoutedEventArgs e)
+        private void DetailsButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Hämta det markerade träningspasset
+            var selectedWorkout = WorkoutListBox.SelectedItem as Workout;
+
+            if (selectedWorkout == null)
             {
-                // Hämta det markerade träningspasset
-                var selectedWorkout = WorkoutListBox.SelectedItem as Workout;
-
-                if (selectedWorkout == null)
-                {
-                    MessageBox.Show("Please select a workout to view details.", "No Selection", MessageBoxButton.OK, MessageBoxImage.Warning);
-                    return;
-                }
-
-                // Öppna detaljfönstret för det valda träningspasset
-                var detailsWindow = new WorkoutDetailsWindow(selectedWorkout);
-                detailsWindow.ShowDialog();
+                MessageBox.Show("Please select a workout to view details.", "No Selection", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
             }
+
+            // Öppna detaljfönstret för det valda träningspasset
+            var detailsWindow = new WorkoutDetailsWindow(this, selectedWorkout);
+            this.Hide();
+            detailsWindow.ShowDialog();
+        }
 
         private void SignOutButton_Click(object sender, RoutedEventArgs e)
         {
@@ -230,9 +259,25 @@ namespace FitTrack
             // Stäng nuvarande fönster (WorkoutsWindow)
             this.Close();
         }
+
+        private void UsersCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var selectedUser = e.AddedItems[0] as User;
+
+            if (selectedUser == null || IsUserComboChangedFromCode)
+            {
+                IsUserComboChangedFromCode = false;
+                return;
+            }
+
+            IsUserComboChangedFromCode = false;
+            manager.CurrentUser = selectedUser;
+            WorkoutsWindow workoutsWindow = new WorkoutsWindow(manager);
+            this.Close();
+            workoutsWindow.Show();
+        }
     }
 }
-    
 
 
 
@@ -240,4 +285,4 @@ namespace FitTrack
 
 
 
-    
+

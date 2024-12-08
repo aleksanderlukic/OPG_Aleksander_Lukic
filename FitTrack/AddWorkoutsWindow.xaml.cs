@@ -107,14 +107,29 @@ namespace FitTrack
             {
 
                 // Skapa ett nytt Workout-objekt
-                NewWorkout = new CardioWorkout
+                if(WorkoutTypeComboBox.Text == "Konditionsträning")
                 {
-                    Type = WorkoutTypeComboBox.Text,
-                    Duration = TimeSpan.FromMinutes(duration),
-                    CaloriesBurned = caloriesBurned,
-                    Notes = NotesTextBox.Text,
-                    Date = DateOnly.Parse(DatePicker.Text)
-                };
+                    NewWorkout = new CardioWorkout
+                    {
+                        Type = WorkoutTypeComboBox.Text,
+                        Duration = duration,
+                        CaloriesBurned = caloriesBurned,
+                        Notes = NotesTextBox.Text,
+                        Date = DateTime.Parse(DatePickerName.Text)
+                    };
+                } else
+                {
+                    NewWorkout = new StrengthWorkout
+                    {
+                        Type = WorkoutTypeComboBox.Text,
+                        Duration = duration,
+                        CaloriesBurned = caloriesBurned,
+                        Notes = NotesTextBox.Text,
+                        Date = DateTime.Parse(DatePickerName.Text)
+                    };
+                }
+
+                
 
                 MessageBox.Show("En ny workout har skapats");
                 DialogResult = true; // Signalerar att träningen sparades korrekt
