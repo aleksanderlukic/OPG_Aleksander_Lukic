@@ -12,13 +12,14 @@ namespace FitTrack.Classes.BaseClasses
         public string Username { get; set; }
         public string Password { get; set; }
         public string Country { get; set; }
-        public List<Workout> Workouts { get; set; } = new List<Workout>();
+        public bool LoggedInAsAdmin {  get; set; }
 
         
         public List<User> Users { get; set; }
 
         public UserManagement()
-        {
+        { 
+            User adminUser = new User { Username = "admin", Password = "admin", Country = "Sverige", IsAdmin=true };
             User user = new User { Username = "Alex", Password = "123", Country = "Sverige" };
             CurrentUser = user;
             user.Workouts.Add(
@@ -28,23 +29,18 @@ namespace FitTrack.Classes.BaseClasses
 
             Users = new List<User>();
             Users.Add(user);
-            
-        }
-        public bool SignIn(string username, string password)
-        {
-            return username == Username && password == Password;
+            Users.Add(adminUser);
+
         }
 
+        public void UpdateWorkoutsList(List<Workout> workouts)
+        {
+            var foundUser = Users.FirstOrDefault(us => us.Username == CurrentUser.Username);
+            if (foundUser != null)
+            {
+                foundUser.Workouts = workouts;
+            }
+        }
        
-
-        public void AddWorkout(Workout workout)
-        {
-            Workouts.Add(workout);
-        }
-
-        public void ResetPassword(string securityAnswer, string newPassword)
-        {
-            // Logik för att återställa lösenord
-        }
     }
 }

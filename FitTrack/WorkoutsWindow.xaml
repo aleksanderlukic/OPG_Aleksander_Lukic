@@ -20,5 +20,7 @@
         <Button Content="Sign Out" Width="80" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10" Click="SignOutButton_Click"/>
         <TextBlock x:Name="LoggedInAsLabel" TextWrapping="Wrap" Text="Inloggad Som:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,58,0,0" Width="80"/>
         <TextBlock x:Name="LoggedInAsValue" TextWrapping="Wrap" Text="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,78,0,0" Width="80"/>
+        <ComboBox x:Name="UsersCombo" HorizontalAlignment="Left" Margin="10,99,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding UserList}" SelectedItem="{Binding SelectedUser, Mode=TwoWay}" DisplayMemberPath="Username" Visibility="Hidden" SelectionChanged="UsersCombo_SelectionChanged" />
+
     </Grid>
 </Window>

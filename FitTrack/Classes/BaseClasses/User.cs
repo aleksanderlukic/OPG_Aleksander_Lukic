@@ -12,6 +12,7 @@ namespace FitTrack.Classes.BaseClasses
     {
         public string Name { get; set; }
         public List<Workout> Workouts { get; set; }
+        public bool IsAdmin {  get; set; }
 
         public User() 
         {

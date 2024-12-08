@@ -86,6 +86,7 @@ namespace FitTrack
         private UserManagement manager;
         public User CurrentUser { get; private set; }
         private ObservableCollection<Workout> workoutList;
+        private bool IsUserComboChangedFromCode {  get; set; }
 
         public ObservableCollection<Workout> WorkoutList
         {
@@ -97,6 +98,24 @@ namespace FitTrack
             }
         }
 
+        private ObservableCollection<User> userList;
+
+        public ObservableCollection<User> UserList
+        {
+            get { return userList; }
+            set
+            {
+                userList = value;
+                OnPropertyChanged(nameof(UserList));
+            }
+        }
+
+        private User _selectedUser;
+        public User SelectedUser { 
+            get => _selectedUser; 
+            set { _selectedUser = value; OnPropertyChanged(nameof(SelectedUser)); } 
+        }
+
         public WorkoutsWindow(UserManagement manager)
         {
             InitializeComponent();
@@ -105,6 +124,19 @@ namespace FitTrack
             DataContext = this; // Set the DataContext for data binding
             LoggedInAsValue.Text = manager.CurrentUser.Username;
             WorkoutList = new ObservableCollection<Workout>(manager.CurrentUser.Workouts);
+            UserList = new ObservableCollection<User>(manager.Users);
+
+            if (manager.LoggedInAsAdmin)
+            {
+                UsersCombo.Visibility = Visibility.Visible;
+                IsUserComboChangedFromCode = true;
+                SelectedUser = UserList.First(us => us.Username == manager.CurrentUser.Username);
+                
+
+            } else
+            {
+                UsersCombo.Visibility = Visibility.Collapsed;
+            }
         }
 
         private void AddWorkout_Click(object sender, RoutedEventArgs e)
@@ -116,6 +148,7 @@ namespace FitTrack
                 if (addWorkoutWindow.NewWorkout != null)
                 {
                     WorkoutList.Add(addWorkoutWindow.NewWorkout); // Add new workout to the ObservableCollection
+                    manager.UpdateWorkoutsList(WorkoutList.ToList());
                 }
                 else
                 {
@@ -151,7 +184,7 @@ namespace FitTrack
                 if (selectedWorkout != null)
                 {
                     WorkoutList.Remove(selectedWorkout); //ta bor det.
-
+                    manager.UpdateWorkoutsList(WorkoutList.ToList());
                 }
                 else
                 {
@@ -162,13 +195,6 @@ namespace FitTrack
             {
                 MessageBox.Show("Please select a workout to remove.");
             }
-        }
-
-
-
-        private void WorkoutDetails_Click(object sender, RoutedEventArgs e)
-        {
-
         }
 
 
@@ -232,6 +258,23 @@ namespace FitTrack
 
             // Stäng nuvarande fönster (WorkoutsWindow)
             this.Close();
+        }
+
+        private void UsersCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var selectedUser = e.AddedItems[0] as User;
+
+            if (selectedUser == null || IsUserComboChangedFromCode)
+            {
+                IsUserComboChangedFromCode = false;
+                return;
+            }
+
+            IsUserComboChangedFromCode = false;
+            manager.CurrentUser = selectedUser;
+            WorkoutsWindow workoutsWindow = new WorkoutsWindow(manager);
+            this.Close();
+            workoutsWindow.Show();
         }
     }
 }
