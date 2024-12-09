@@ -108,6 +108,10 @@ namespace FitTrack
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
+            // Öppna WorkoutsWindow
+            WorkoutsWindow workoutsWindow = new WorkoutsWindow(manager);
+            workoutsWindow.Show();
+
             this.Close();
         }
 
