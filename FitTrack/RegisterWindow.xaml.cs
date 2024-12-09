@@ -35,6 +35,14 @@ namespace FitTrack
             string ConfirmPassword = ConfirmPasswordBox.Password;
             string country = CountryTextBox.Text;
 
+            // Kontrollera om användarnamnet redan finns
+            if (this.manager.Users.Any(user => user.Username == username))
+            {
+                MessageBox.Show("Användarnamnet är redan upptaget, välj ett annat!");
+                return;
+            }
+
+
             if (password == ConfirmPassword)
 
             {
