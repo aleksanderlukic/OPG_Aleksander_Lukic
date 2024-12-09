@@ -120,6 +120,7 @@ namespace FitTrack
         {
             // Här kan du lägga till logik för att kolla mot en databas eller lista med användarnamn
             return username == "TakenUsername"; // Simulerad kontroll
+
         }
     }
 }

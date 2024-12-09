@@ -193,7 +193,8 @@ namespace FitTrack
             }
             else
             {
-                MessageBox.Show("Please select a workout to remove.");
+                MessageBox.Show("Please select a workout to remove.", "No Selection", MessageBoxButton.OK, MessageBoxImage.Warning);
+
             }
         }
 
