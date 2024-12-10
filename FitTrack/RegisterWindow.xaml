@@ -8,10 +8,32 @@
         Title="RegisterWindow" Height="450" Width="800">
     <Grid Background="LightGray">
         <StackPanel>
-            <TextBox x:Name="UsernameTextBox" Width="200" Height="30" HorizontalAlignment="Center" VerticalAlignment="Top" Text="Användarnamn" />
-        <PasswordBox x:Name="PasswordBox" Width="200" Height="30"  HorizontalAlignment="Center" VerticalContentAlignment="Top" Password="Lösenord"/>
-        <PasswordBox x:Name="ConfirmPasswordBox" Width="200" Height="30"  HorizontalAlignment="Center" VerticalContentAlignment="Top" Password="Bekräfta lösenord" />
-        <TextBox x:Name="CountryTextBox" Width="200" Height="30"  HorizontalAlignment="Center" VerticalAlignment="Top" Text="Land" />
+            
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10">
+                <Label Content="Användarnamn" FontFamily="Arial" FontSize="10" FontWeight="Bold" />
+                <TextBox x:Name="UsernameTextBox" Width="200" Height="30" HorizontalAlignment="Center" VerticalAlignment="Top" />
+            </StackPanel>
+
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10">
+                <Label Content="Lösenord" FontFamily="Arial" FontSize="10" FontWeight="Bold" />
+                <PasswordBox x:Name="PasswordBox" Width="200" Height="30"  HorizontalAlignment="Center" VerticalContentAlignment="Top"/>
+            </StackPanel>
+
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10">
+                <Label Content="Bekräfta Lösenord" FontFamily="Arial" FontSize="10" FontWeight="Bold" />
+                <PasswordBox x:Name="ConfirmPasswordBox" Width="200" Height="30"  HorizontalAlignment="Center" VerticalContentAlignment="Top" />
+            </StackPanel>
+
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10">
+                <Label Content="Land" FontFamily="Arial" FontSize="10" FontWeight="Bold" />
+                <ComboBox x:Name="CountryTextBox" Width="200" Height="30" >
+                <ComboBoxItem Content="Sverige"></ComboBoxItem>
+                <ComboBoxItem Content="Finland"></ComboBoxItem>
+                <ComboBoxItem Content="Norge"></ComboBoxItem>
+                <ComboBoxItem Content="Denmark"></ComboBoxItem>
+            </ComboBox>
+            </StackPanel>
+
         <Button Content="Registrera" Width="100" Height="30"  HorizontalAlignment="Center" VerticalAlignment="Top" Click="RegisterButton_Click" />
         <Button Content="Avbryt" Width="100" Height="30" HorizontalAlignment="Center" VerticalAlignment="Top" Click="CancelButton_Click" />
         </StackPanel>
