@@ -19,8 +19,8 @@ namespace FitTrack.Classes.BaseClasses
 
         public UserManagement()
         { 
-            User adminUser = new User { Username = "admin", Password = "admin", Country = "Sverige", IsAdmin=true };
-            User user = new User { Username = "Alex", Password = "123", Country = "Sverige" };
+            User adminUser = new User { Username = "admin", Password = "password", Country = "Sverige", IsAdmin=true };
+            User user = new User { Username = "user", Password = "password", Country = "Sverige" };
             CurrentUser = user;
             user.Workouts.Add(
                 new CardioWorkout { Duration = 20, Date = new DateTime(2022, 12, 12), CaloriesBurned = 123, Notes = "blabla" }  

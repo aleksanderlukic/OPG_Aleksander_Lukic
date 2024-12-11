@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:FitTrack"
         mc:Ignorable="d"
         Title="WorkoutDetailsWindow" Height="450" Width="800">
-    <Grid>
+    <Grid Background="LightGray" >
         <StackPanel Margin="10,0,0,0">
             <TextBlock Text="Workout Details" FontWeight="Bold" FontSize="16" Margin="0,0,0,10" />
             <TextBlock Text="Träningstyp" FontWeight="Bold" />

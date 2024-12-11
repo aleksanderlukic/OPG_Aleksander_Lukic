@@ -117,8 +117,7 @@ namespace FitTrack
 
         // Metod för att kontrollera om användarnamnet är upptaget (simulerad)
         private bool IsUsernameTaken(string username)
-        {
-            return true; 
+        { 
             // Här kan du lägga till logik för att kolla mot en databas eller lista med användarnamn
             return manager.Users.Find(user => user.Username == username).Username == username; // Simulerad kontroll
 

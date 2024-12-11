@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:FitTrack"
         mc:Ignorable="d"
         Title="AddWorkoutsWindow" Height="450" Width="800">
-    <Grid> 
+    <Grid Background="LightGray"> 
         <StackPanel Margin="245,0,0,0"> 
         <ComboBox x:Name="WorkoutTypeComboBox" Width="400" Height="30" Margin="0,20,0,0" HorizontalAlignment="Center" VerticalAlignment="Top">
                <ComboBoxItem Content="Konditionsträning"/>
