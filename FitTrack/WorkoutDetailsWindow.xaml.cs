@@ -77,6 +77,28 @@ namespace FitTrack
         {
 
         }
+
+        private void CancelButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Stänger WorkoutDetailsWindow
+            this.Close();
+
+            // Om WorkoutsWindow redan är öppet, hitta den existerande instansen och visa den igen.
+            // Detta förhindrar att en ny instans skapas varje gång.
+            var workoutsWindow = Application.Current.Windows.OfType<WorkoutsWindow>().FirstOrDefault();
+            if (workoutsWindow != null)
+            {
+                workoutsWindow.Show();
+            }
+            else
+            {
+                // Om WorkoutsWindow inte är öppet, skapa och visa det.
+                WorkoutsWindow newWorkoutsWindow = new WorkoutsWindow();
+                newWorkoutsWindow.Show();
+            }
+        }
+
+
     }
 }
 

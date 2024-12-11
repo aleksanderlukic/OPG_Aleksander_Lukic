@@ -25,7 +25,7 @@
         <!-- Inputfält för nytt användarnamn -->
         <StackPanel Grid.Row="1" Margin="0,0,0,20">
             <TextBlock Text="New Username:" FontWeight="Bold"/>
-            <TextBox Name="NewUsernameTextBox" Text="{Binding Username}" Width="200"/>
+            <TextBox Name="NewUsernameTextBox" Width="200"/>
         </StackPanel>
 
         <!-- Inputfält för nytt lösenord -->

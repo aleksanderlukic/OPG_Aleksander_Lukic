@@ -98,6 +98,7 @@ namespace FitTrack
 
             manager.Users.RemoveAt(foundUserIndex);
             manager.CurrentUser.Password = confirmPassword;
+            manager.CurrentUser.Username = newUsername;
             manager.Users.Add(manager.CurrentUser);
             _workoutsWindow.LoggedInAsValue.Text = manager.CurrentUser.Username;
             _workoutsWindow.Show();
@@ -117,9 +118,9 @@ namespace FitTrack
 
         // Metod för att kontrollera om användarnamnet är upptaget (simulerad)
         private bool IsUsernameTaken(string username)
-        { 
+        {
             // Här kan du lägga till logik för att kolla mot en databas eller lista med användarnamn
-            return manager.Users.Find(user => user.Username == username).Username == username; // Simulerad kontroll
+            return this.manager.Users.Find(user => user.Username == username) != null; // Simulerad kontroll
 
         }
     }
