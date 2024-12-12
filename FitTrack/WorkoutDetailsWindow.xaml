@@ -24,9 +24,9 @@
             <TextBox x:Name="NotesInput" TextWrapping="Wrap" Text="{Binding Notes}" Width="300" Margin="0,0,0,10" HorizontalAlignment="Left" IsEnabled="False" />
             <Button x:Name="UnlockBtn" Content="Lås upp" Margin="0,0,0,10" Click="UnlockBtn_Click"/>
             <Button x:Name="SaveBtn" Content="Spara" Click="SaveBtn_Click" Visibility="Hidden"/>
-            <Button Content="Cancel" Width="75" Height="30" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10" Click="CancelButton_Click"/>
+            <Button Content="Cancel" Margin="0,0,0,10" Click="CancelButton_Click"/>
 
-
+           
 
 
 

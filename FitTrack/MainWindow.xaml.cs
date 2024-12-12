@@ -17,48 +17,65 @@ namespace FitTrack
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
+
+    // Hanterar användarrelaterade data och logik
+
     {
         public UserManagement manager;
+
+        // Konstruktor för MainWindow, tar in en instans av UserManagement
         public MainWindow(UserManagement manager)
         {
 
-            InitializeComponent();
-            this.manager = manager;
+            InitializeComponent(); // Initialiserar komponenterna i fönstret
+            this.manager = manager; // Sätter den inkommande UserManagement-instansen till lokala fältet
 
         }
 
+        // Öppnar WorkoutsWindow och skickar vidare UserManagement-instansen
         private void OpenWorkoutsWindow()
         {
             WorkoutsWindow workoutsWindow = new WorkoutsWindow(manager);
-            workoutsWindow.Show();
-        }
-        private void OpenButton_Click(object sender, RoutedEventArgs e)
-        {
-            OpenWorkoutsWindow();
+            workoutsWindow.Show(); // Visar WorkoutsWindow
         }
 
+
+        // Event handler för att hantera klick på "OpenButton"
+        private void OpenButton_Click(object sender, RoutedEventArgs e)
+        {
+            OpenWorkoutsWindow(); // Anropar metoden för att öppna WorkoutsWindow
+        }
+
+
+        // Stänger alla öppna WorkoutsWindow-fönster
         private void CloseAllWorkoutWindows()
         {
-            foreach (Window window in Application.Current.Windows)
+            foreach (Window window in Application.Current.Windows) // Loopa igenom alla öppna fönster
             {
-                if (window is WorkoutsWindow)
+                if (window is WorkoutsWindow) // Kontrollera om fönstret är av typen WorkoutsWindow
                 {
-                    window.Close();
+                    window.Close(); // Stäng fönstret
                 }
             }
         }
 
+        // Event handler för inloggningsknappen
+
         private void SignIn_Click(object sender, RoutedEventArgs e)
         {
-            string username = UsernameTextBox.Text;
-            string password = PasswordBox.Password;
+            string username = UsernameTextBox.Text; // Hämtar användarnamn från inmatningsfältet
+            string password = PasswordBox.Password; // Hämtar lösenord från lösenordsfältet
+
+            // Letar efter en användare med matchande användarnamn och lösenord
 
             var user = manager.Users.FirstOrDefault(u => u.Username == username && u.Password == password);
 
-            if (user != null)
+            if (user != null) // Om användaren hittas
             {
                 MessageBox.Show("Inloggning lyckades!", "Inloggning", MessageBoxButton.OK, MessageBoxImage.Information);
-                manager.CurrentUser = user;
+                manager.CurrentUser = user; // Sätter den inloggade användaren som aktiv användare
+
+                // Kontrollera om användaren är administratör
 
                 if (user.IsAdmin == true)
                 {
@@ -69,16 +86,20 @@ namespace FitTrack
                     manager.LoggedInAsAdmin = false;
                 }
 
+
+                // Öppnar WorkoutsWindow och stänger MainWindow
+
                 WorkoutsWindow workoutsWindow = new WorkoutsWindow(manager);
                 workoutsWindow.Show();
-                this.Close();
+                this.Close(); // Stänger MainWindow
             }
-            else
+            else // Om inloggningen misslyckas
             {
                 MessageBox.Show("Fel användarnamn eller lösenord. Försök igen.", "Fel", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
+        // Event handler för när lösenordet ändras i lösenordsfältet
 
         private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
         {
@@ -90,15 +111,16 @@ namespace FitTrack
             // Logik för användarnamnändring
         }
 
+        // Event handler för registreringsknappen
         private void Register_Click(object sender, RoutedEventArgs e)
         {
-            RegisterWindow registerwindow = new RegisterWindow(manager);
-            registerwindow.Show();
-            this.Close();
+            RegisterWindow registerwindow = new RegisterWindow(manager); // Skapar ett nytt RegisterWindow och skickar UserManagement-instansen
+            registerwindow.Show(); // Visar RegisterWindow
+            this.Close(); // Stänger MainWindow
 
             // Event handler för när lösenordet ändras i PasswordBox
 
-         
+
 
 
         }
