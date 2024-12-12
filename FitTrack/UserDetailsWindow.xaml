@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:FitTrack"
         mc:Ignorable="d"
         Title="UserDetailsWindow" Height="703" Width="863">
-    <Grid Background="LightGray" Margin="20" >
+    <Grid Background="LightGray" Margin="20"  >
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
