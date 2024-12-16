@@ -141,7 +141,15 @@ namespace FitTrack
 
         private void AddWorkout_Click(object sender, RoutedEventArgs e)
         {
-            var addWorkoutWindow = new AddWorkoutsWindow(CurrentUser, manager);
+           
+
+            // Dölj eller stäng WorkoutsWindow
+            this.Hide(); // eller this.Close() om du vill stänga det helt
+
+            // När du vill öppna AddWorkoutsWindow
+            var addWorkoutWindow = new AddWorkoutsWindow(CurrentUser, ref manager, this); // Skicka 'this' som referens till WorkoutsWindow
+
+
 
             if (addWorkoutWindow.ShowDialog() == true)
             {

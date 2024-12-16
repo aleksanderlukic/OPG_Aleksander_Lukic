@@ -71,14 +71,20 @@ namespace FitTrack
 
     public partial class AddWorkoutsWindow : Window
     {
+        public WorkoutsWindow workoutsWindow;
         public UserManagement manager;
 
         public User currentUser;
-        public AddWorkoutsWindow(User user, UserManagement manager)
+        public AddWorkoutsWindow(User currentUser, ref UserManagement manager, WorkoutsWindow workoutsWindow)
         {
             InitializeComponent();
-            currentUser = user;
+            this.currentUser = currentUser;
+            this.workoutsWindow = workoutsWindow;
             this.manager = manager;
+
+            // Dölj WorkoutsWindow när AddWorkoutsWindow öppnas
+            workoutsWindow.Hide(); // eller workoutsWindow.Close() om du vill stänga det istället
+
         }
 
         public Workout NewWorkout { get; set; } // Nya träningspasset som användaren skapar
@@ -143,7 +149,13 @@ namespace FitTrack
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+
+
+
+           this.workoutsWindow.Show();
+
             this.Close();
+
         }
     }
 
